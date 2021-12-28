@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany} from '@loopback/repository';
+import {ProductoFactura} from './producto-factura.model';
 
 @model()
 export class Factura extends Entity {
@@ -33,6 +34,8 @@ export class Factura extends Entity {
   })
   id_cliente: number;
 
+  @hasMany(() => ProductoFactura, {keyTo: 'id_factura'})
+  tiene: ProductoFactura[];
 
   constructor(data?: Partial<Factura>) {
     super(data);
